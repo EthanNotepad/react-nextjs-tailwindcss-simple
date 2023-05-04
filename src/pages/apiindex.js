@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import styles from "@/styles/ApiIndex.module.css";
-import CreateDialog from "@/Components/CreateDialog";
-import EffectEventTest from "@/Components/EffectEventTest";
+import CreateDialog from "../../components/CreateDialog";
+import EffectEventTest from "../../components/EffectEventTest";
 
 async function sendData() {
   const data = {
