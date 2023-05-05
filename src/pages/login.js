@@ -11,13 +11,21 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/api/login", {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        "http://localhost:8888/timetracker/public/login",
+        {
+          username,
+          password,
+        }
+      );
       console.log(response.data);
-      // If authentication is successful, redirect to dashboard
-      history.push("/apiindex");
+      if (response.data.code == 200) {
+        // If authentication is successful, redirect to dashboard
+        setError(response.data.msg);
+        // history.push("/apiindex");
+      } else {
+        setError(response.data.msg);
+      }
     } catch (error) {
       // If there's an error, display the error message
       setError(error.response.data.message);
@@ -47,7 +55,7 @@ export default function Login() {
           </label>
           <button type="submit">Login</button>
         </form>
-        {error && <p>{error}</p>}
+        {error && <h1>{error}</h1>}
       </div>
     </>
   );
